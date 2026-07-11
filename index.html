@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Snoopy Birthday Mobile Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Happy+Monkey&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-main: #fbf5eb;
+            --border-color: #1a1a1a;
+            --c-verde: #c6e6df;
+            --c-rosa: #f5c2d5;
+            --c-naranja: #f9be83;
+            --c-azul: #add2e6;
+        }
+
+        /* Configuración estricta para fijar la pantalla en el celular */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Evita el scroll global */
+            font-family: 'Happy Monkey', sans-serif;
+            background-color: var(--bg-main);
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        /* Encabezado ultra optimizado para móvil */
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 10px;
+            background-color: #ffffff;
+            border-bottom: 3px solid var(--border-color);
+            height: 95px; /* Altura fija para el control del viewport */
+            box-sizing: border-box;
+            gap: 4px;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* Imagen Principal */
+        .img-principal {
+            height: 38px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.25rem;
+            color: var(--border-color);
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        /* Contenedor del Buscador + Imagen Secundaria */
+        .search-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .search-container {
+            position: relative;
+            flex-grow: 1;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 5px 12px;
+            font-size: 0.8rem;
+            font-family: 'Happy Monkey', sans-serif;
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            outline: none;
+            box-shadow: 2px 2px 0px var(--border-color);
+            box-sizing: border-box;
+        }
+
+        /* Imagen Secundaria al lado del buscador */
+        .img-secundaria {
+            height: 26px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Grid de 12 meses adaptado a la altura del celular */
+        main {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columnas en móvil */
+            grid-template-rows: repeat(4, 1fr);    /* 4 filas en móvil */
+            gap: 6px;
+            padding: 8px;
+            box-sizing: border-box;
+            height: calc(100% - 95px);
+        }
+
+        /* Ajuste para pantallas extremadamente pequeñas (2 columnas) */
+        @media (max-width: 350px) {
+            main {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(6, 1fr);
+            }
+        }
+
+        /* Tarjeta de Mes en miniatura */
+        .month-card {
+            background-color: #ffffff;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+            padding: 4px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Títulos de meses en miniatura */
+        .month-header {
+            padding: 2px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.75rem;
+            border: 1.5px solid var(--border-color);
+            margin-bottom: 4px;
+            box-shadow: 1px 1px 0px var(--border-color);
+            font-family: 'Fredoka', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* Asignación de clases de fondo */
+        .bg-v { background-color: var(--c-verde); }
+        .bg-r { background-color: var(--c-rosa); }
+        .bg-n { background-color: var(--c-naranja); }
+        .bg-a { background-color: var(--c-azul); }
+
+        /* Lista de cumpleañeros micro-ajustada */
+        .birthday-list {
+            list-style: none;
+            overflow-y: auto; /* Scroll de seguridad interno si hay muchos nombres */
+            flex-grow: 1;
+            z-index: 2;
+        }
+
+        .birthday-item {
+            font-size: 0.68rem; /* Tamaño óptimo para pantallas móviles */
+            padding: 2px 3px;
+            border-bottom: 1px dashed #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1px;
+        }
+
+        .birthday-item span {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis; /* Corta nombres muy largos con "..." */
+            max-width: 70%;
+        }
+
+        .no-birthdays {
+            font-style: italic;
+            color: #aaa;
+            text-align: center;
+            font-size: 0.6rem;
+            margin-top: 8px;
+        }
+
+        /* Mini GIFs integrados en la esquina inferior */
+        .gif-mes {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 26px;
+            height: 26px;
+            object-fit: contain;
+            z-index: 1;
+            opacity: 0.85;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-top">
+            <!-- Imagen Principal cargada directamente -->
+            <img class="img-principal" src="https://i.postimg.cc/JhKshN9v/1c190cbf46871b36fdeaae3c2b1dfb27.gif" alt="Snoopy Principal">
+            <h1>Cumpleaños</h1>
+        </div>
+        
+        <div class="search-wrapper">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar nombre o mes...">
+            </div>
+            <!-- Imagen Secundaria cargada al lado del buscador -->
+            <img class="img-secundaria" src="https://i.postimg.cc/NGZkYt8W/5bbf6dd3b61a504eeccb0bee32099215.gif" alt="Snoopy Buscador">
+        </div>
+    </header>
+
+    <main id="calendarGrid">
+        <!-- Render dinámico desde JavaScript -->
+    </main>
+
+    <script>
+        // Distribución ordenada de las 4 fotos para los meses[span_0](start_span)[span_0](end_span)
+        const birthdayData = [
+            { id: "enero", name: "Enero", style: "bg-v", gif: "https://i.postimg.cc/FRmVMVjz/giphy.gif", list: [] },
+            { id: "febrero", name: "Febrero", style: "bg-r", gif: "https://i.postimg.cc/kGYNtrL7/source.gif", list: [{ name: "Noelia", day: 19 }, { name: "Vanessa", day: 20 }] },
+            { id: "marzo", name: "Marzo", style: "bg-n", gif: "https://i.postimg.cc/WbK6NvMH/47284d9e1a5fb34fb81ef770a3c54ed3.gif", list: [{ name: "Giannina", day: 15 }, { name: "Delia", day: 21 }] },
+            { id: "abril", name: "Abril", style: "bg-n", gif: "https://i.postimg.cc/FKbjVkwc/200.gif", list: [{ name: "Dina", day: 30 }] },
+            { id: "mayo", name: "Mayo", style: "bg-r", gif: "https://i.postimg.cc/kGYNtrL7/source.gif", list: [] },
+            { id: "junio", name: "Junio", style: "bg-v", gif: "https://i.postimg.cc/FRmVMVjz/giphy.gif", list: [] },
+            { id: "julio", name: "Julio", style: "bg-r", gif: "https://i.postimg.cc/WbK6NvMH/47284d9e1a5fb34fb81ef770a3c54ed3.gif", list: [] },
+            { id: "agosto", name: "Agosto", style: "bg-v", gif: "https://i.postimg.cc/FRmVMVjz/giphy.gif", list: [{ name: "Carlitos", day: 11 }, { name: "Jimena", day: 11 }] },
+            { id: "septiembre", name: "Septiembre", style: "bg-n", gif: "https://i.postimg.cc/WbK6NvMH/47284d9e1a5fb34fb81ef770a3c54ed3.gif", list: [] },
+            { id: "octubre", name: "Octubre", style: "bg-r", gif: "https://i.postimg.cc/kGYNtrL7/source.gif", list: [] },
+            { id: "noviembre", name: "Noviembre", style: "bg-n", gif: "https://i.postimg.cc/FKbjVkwc/200.gif", list: [] },
+            { id: "diciembre", name: "Diciembre", style: "bg-a", gif: "https://i.postimg.cc/FKbjVkwc/200.gif", list: [] }
+        ];
+
+        const calendarGrid = document.getElementById('calendarGrid');
+        const searchInput = document.getElementById('searchInput');
+
+        function renderCalendar(filterText = '') {
+            calendarGrid.innerHTML = '';
+            const search = filterText.toLowerCase().trim();
+
+            birthdayData.forEach(month => {
+                const matchesMonth = month.name.toLowerCase().includes(search);
+                const filteredList = month.list.filter(person => 
+                    person.name.toLowerCase().includes(search) || 
+                    person.day.toString().includes(search)
+                );
+                
+                if (search && !matchesMonth && filteredList.length === 0) {
+                    return; 
+                }
+
+                const card = document.createElement('section');
+                card.className = 'month-card';
+
+                const header = document.createElement('div');
+                header.className = `month-header ${month.style}`;
+                header.textContent = month.name;
+                card.appendChild(header);
+
+                const ul = document.createElement('ul');
+                ul.className = 'birthday-list';
+
+                const listToDisplay = matchesMonth ? month.list : filteredList;
+
+                if (listToDisplay.length > 0) {
+                    listToDisplay.forEach(person => {
+                        const li = document.createElement('li');
+                        li.className = 'birthday-item';
+                        li.innerHTML = `<span>🎂 ${person.name}</span> <strong>${person.day}</strong>`;
+                        ul.appendChild(li);
+                    });
+                } else {
+                    const liNo = document.createElement('li');
+                    liNo.className = 'no-birthdays';
+                    liNo.textContent = 'Vacío';
+                    ul.appendChild(liNo);
+                }
+                card.appendChild(ul);
+
+                // Mini GIF del mes integrado perfectamente en la esquina
+                const img = document.createElement('img');
+                img.className = 'gif-mes';
+                img.src = month.gif;
+                img.alt = 'Snoopy Mes';
+                card.appendChild(img);
+
+                calendarGrid.appendChild(card);
+            });
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            renderCalendar(e.target.value);
+        });
+
+        renderCalendar();
+    </script>
+</body>
+</html>
