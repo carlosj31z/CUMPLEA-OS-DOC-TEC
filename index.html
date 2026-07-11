@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Snoopy Birthday Mobile Dashboard</title>
+    <title>Snoopy Skeuomorphic Centered Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Happy+Monkey&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Happy+Monkey&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-main: #fbf5eb;
-            --border-color: #1a1a1a;
-            --c-verde: #c6e6df;
-            --c-rosa: #f5c2d5;
-            --c-naranja: #f9be83;
-            --c-azul: #add2e6;
+            --c-verde: linear-gradient(135deg, #e3f6f2, #b5ded5);
+            --c-rosa: linear-gradient(135deg, #fce5ee, #eba1bd);
+            --c-naranja: linear-gradient(135deg, #ffedd8, #f5b069);
+            --c-azul: linear-gradient(135deg, #e3f2fd, #90caf9);
+            --border-real: #2b231a;
         }
 
         html, body {
@@ -24,24 +23,29 @@
             padding: 0;
             overflow: hidden; 
             font-family: 'Happy Monkey', sans-serif;
-            background-color: var(--bg-main);
+            background-color: #cb9b6c;
+            background-image: 
+                radial-gradient(rgba(0,0,0,0.15) 15%, transparent 16%),
+                radial-gradient(rgba(0,0,0,0.15) 15%, transparent 16%);
+            background-size: 8px 8px;
+            background-position: 0 0, 4px 4px;
             display: flex;
             flex-direction: column;
             box-sizing: border-box;
         }
 
-        /* Encabezado con espacio para el botón de agregar */
         header {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 6px 10px;
-            background-color: #ffffff;
-            border-bottom: 3px solid var(--border-color);
-            height: 105px; 
+            padding: 8px 10px;
+            background: linear-gradient(180deg, #ffffff 0%, #f2f0ea 100%);
+            border-bottom: 4px solid var(--border-real);
+            height: 110px; 
             box-sizing: border-box;
-            gap: 4px;
+            gap: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3), inset 0 -3px 0 rgba(0,0,0,0.1);
         }
 
         .header-top {
@@ -54,33 +58,36 @@
         }
 
         .img-principal {
-            height: 35px;
+            height: 38px;
             width: auto;
             object-fit: contain;
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
         }
 
         h1 {
             font-family: 'Fredoka', sans-serif;
-            font-size: 1.25rem;
-            color: var(--border-color);
+            font-size: 1.3rem;
+            color: #3e2723;
             text-transform: uppercase;
             margin: 0;
             letter-spacing: 0.5px;
+            text-shadow: 1px 1px 0px #ffffff;
         }
 
-        /* Botón Añadir Cumpleaños */
         .btn-add {
             position: absolute;
             right: 5px;
-            background-color: var(--c-naranja);
-            border: 2px solid var(--border-color);
+            background: linear-gradient(135deg, #ffb74d, #f57c00);
+            border: 2px solid var(--border-real);
             border-radius: 50%;
             width: 32px;
             height: 32px;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: bold;
+            color: white;
             cursor: pointer;
-            box-shadow: 2px 2px 0px var(--border-color);
+            box-shadow: 0 3px 5px rgba(0,0,0,0.3), inset 0 2px 2px rgba(255,255,255,0.5);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -101,151 +108,187 @@
 
         .search-container input {
             width: 100%;
-            padding: 5px 12px;
+            padding: 6px 14px;
             font-size: 0.8rem;
             font-family: 'Happy Monkey', sans-serif;
-            border: 2px solid var(--border-color);
-            border-radius: 15px;
+            border: 2px solid var(--border-real);
+            border-radius: 20px;
             outline: none;
-            box-shadow: 2px 2px 0px var(--border-color);
+            background-color: #fafafa;
+            box-shadow: inset 2px 2px 5px rgba(0,0,0,0.2), 1px 1px 0px #fff;
             box-sizing: border-box;
         }
 
         .img-secundaria {
-            height: 26px;
+            height: 28px;
             width: auto;
             object-fit: contain;
         }
 
-        /* Grid de 12 meses */
         main {
             flex-grow: 1;
             display: grid;
             grid-template-columns: repeat(3, 1fr); 
             grid-template-rows: repeat(4, 1fr);    
-            gap: 6px;
-            padding: 8px;
+            gap: 10px;
+            padding: 10px;
             box-sizing: border-box;
-            height: calc(100% - 105px);
+            height: calc(100% - 110px);
         }
 
         .month-card {
-            background-color: #ffffff;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
-            padding: 4px;
+            background: #ffffff;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+            background-size: 100% 16px;
+            border: 1px solid rgba(0,0,0,0.15);
+            border-bottom: 3px solid rgba(0,0,0,0.25);
+            border-radius: 4px;
+            box-shadow: 2px 4px 6px rgba(0,0,0,0.3);
+            padding: 5px;
             display: flex;
             flex-direction: column;
             position: relative;
             overflow: hidden;
+            transform: rotate(calc(var(--rotation, 0deg)));
         }
 
         .month-header {
-            padding: 2px;
-            border-radius: 4px;
+            padding: 3px;
             text-align: center;
             font-weight: 600;
             font-size: 0.72rem;
-            border: 1.5px solid var(--border-color);
+            border: 1px solid rgba(0,0,0,0.15);
             margin-bottom: 4px;
-            box-shadow: 1px 1px 0px var(--border-color);
             font-family: 'Fredoka', sans-serif;
             text-transform: uppercase;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
         }
 
-        .bg-v { background-color: var(--c-verde); }
-        .bg-r { background-color: var(--c-rosa); }
-        .bg-n { background-color: var(--c-naranja); }
-        .bg-a { background-color: var(--c-azul); }
+        .bg-v { background: var(--c-verde); color: #2e4d44; }
+        .bg-r { background: var(--c-rosa); color: #5c2d3e; }
+        .bg-n { background: var(--c-naranja); color: #5e3b15; }
+        .bg-a { background: var(--c-azul); color: #1c3d5a; }
 
-        /* Lista alineada de arriba hacia abajo */
+        /* Lista centrada vertical y horizontalmente */
         .birthday-list {
             list-style: none;
             overflow-y: auto; 
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Alineación arriba para evitar espacios en blanco extraños */
-            gap: 3px;
+            justify-content: center; /* Centrado vertical en el espacio libre */
+            align-items: center;    /* Centrado horizontal absoluto */
+            gap: 6px;
             z-index: 2;
-            padding: 2px 0;
+            padding: 0;
+            margin: 0;
         }
 
-        /* Formato limpio en una sola línea */
+        /* Estilo unificado en bloque vertical sin cortes */
         .birthday-item {
-            font-size: 0.7rem; 
-            font-weight: 600;
-            padding: 1px 2px;
-            display: block;
+            font-size: 0.72rem; 
+            font-weight: bold;
+            color: #2b2b2b;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 3px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            width: 100%;
+            line-height: 1.2;
+        }
+
+        .birthday-item .name-label {
+            display: block;
+            width: 100%;
+            overflow: visible;
+            text-overflow: unset;
+            white-space: normal; /* Permite saltos si el nombre es demasiado largo */
+        }
+
+        .birthday-item .day-label {
+            font-size: 0.65rem;
+            color: #666;
+            font-weight: normal;
+            margin-top: 1px;
         }
 
         .no-birthdays {
             font-style: italic;
-            color: #ccc;
+            color: #b0b0b0;
             text-align: center;
-            font-size: 0.62rem;
-            margin-top: 12px;
+            font-size: 0.65rem;
         }
 
         .gif-mes {
             position: absolute;
             bottom: 2px;
             right: 2px;
-            width: 22px;
-            height: 22px;
+            width: 24px;
+            height: 24px;
             object-fit: contain;
             z-index: 1;
-            opacity: 0.35; 
+            opacity: 0.4; 
             pointer-events: none;
         }
 
-        /* Estilos del Formulario Modal (Pop-up) */
+        .month-card::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle at 3px 3px, #ff1744, #b71c1c);
+            border-radius: 50%;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.4);
+            z-index: 5;
+        }
+
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(2px);
             z-index: 10;
             justify-content: center;
             align-items: center;
         }
 
         .modal-content {
-            background-color: white;
-            border: 3px solid var(--border-color);
-            border-radius: 12px;
-            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
+            border: 3px solid var(--border-real);
+            border-radius: 14px;
+            padding: 18px;
             width: 85%;
             max-width: 290px;
-            box-shadow: 4px 4px 0px var(--border-color);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
 
         .modal-content h3 {
             font-family: 'Fredoka', sans-serif;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
+            margin-bottom: 12px;
+            font-size: 1.15rem;
             text-align: center;
+            color: #3e2723;
         }
 
         .modal-content label {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             display: block;
             margin-top: 8px;
             font-weight: bold;
+            color: #5d4037;
         }
 
         .modal-content input, .modal-content select {
             width: 100%;
-            padding: 6px;
+            padding: 7px;
             margin-top: 3px;
-            border: 2px solid var(--border-color);
+            border: 2px solid var(--border-real);
             border-radius: 6px;
             font-family: 'Happy Monkey', sans-serif;
             font-size: 0.85rem;
@@ -255,21 +298,21 @@
         .modal-buttons {
             display: flex;
             gap: 8px;
-            margin-top: 15px;
+            margin-top: 16px;
         }
 
         .modal-buttons button {
             flex: 1;
-            padding: 6px;
-            border: 2px solid var(--border-color);
+            padding: 8px;
+            border: 2px solid var(--border-real);
             border-radius: 6px;
             font-weight: bold;
             font-family: 'Happy Monkey', sans-serif;
             cursor: pointer;
         }
 
-        .btn-save { background-color: var(--c-verde); }
-        .btn-cancel { background-color: var(--c-rosa); }
+        .btn-save { background: linear-gradient(135deg, #a5d6a7, #66bb6a); color: #1b5e20; }
+        .btn-cancel { background: linear-gradient(135deg, #ef9a9a, #ef5350); color: #7f0000; }
     </style>
 </head>
 <body>
@@ -290,7 +333,7 @@
     </header>
 
     <main id="calendarGrid">
-        <!-- Render dinámico -->
+        <!-- Renderizado dinámico -->
     </main>
 
     <!-- Modal Formulario -->
@@ -329,24 +372,22 @@
     </div>
 
     <script>
-        // Listado base de la imagen
         const defaultData = [
-            { id: "enero", name: "Enero", style: "bg-v", gif: "https://i.postimg.cc/FRmVMVjz/giphy.gif", list: [] },
-            { id: "febrero", name: "Febrero", style: "bg-r", gif: "https://i.postimg.cc/kGYNtrL7/source.gif", list: [{ name: "Noelia", day: 19 }, { name: "Vanessa", day: 20 }] },
-            { id: "marzo", name: "Marzo", style: "bg-n", gif: "https://i.postimg.cc/WbK6NvMH/47284d9e1a5fb34fb81ef770a3c54ed3.gif", list: [{ name: "Giannina", day: 15 }, { name: "Delia", day: 21 }] },
-            { id: "abril", name: "Abril", style: "bg-n", gif: "https://i.postimg.cc/FKbjVkwc/200.gif", list: [{ name: "Dina", day: 30 }] },
-            { id: "mayo", name: "Mayo", style: "bg-r", gif: "https://i.postimg.cc/kGYNtrL7/source.gif", list: [] },
-            { id: "junio", name: "Junio", style: "bg-v", gif: "https://i.postimg.cc/FRmVMVjz/giphy.gif", list: [] },
-            { id: "julio", name: "Julio", style: "bg-r", gif: "https://i.postimg.cc/WbK6NvMH/47284d9e1a5fb34fb81ef770a3c54ed3.gif", list: [] },
-            { id: "agosto", name: "Agosto", style: "bg-v", gif: "https://i.postimg.cc/FRmVMVjz/giphy.gif", list: [{ name: "Carlitos", day: 11 }, { name: "Jimena", day: 11 }] },
-            { id: "septiembre", name: "Septiembre", style: "bg-n", gif: "https://i.postimg.cc/WbK6NvMH/47284d9e1a5fb34fb81ef770a3c54ed3.gif", list: [] },
-            { id: "octubre", name: "Octubre", style: "bg-r", gif: "https://i.postimg.cc/kGYNtrL7/source.gif", list: [] },
-            { id: "noviembre", name: "Noviembre", style: "bg-n", gif: "https://i.postimg.cc/FKbjVkwc/200.gif", list: [] },
-            { id: "diciembre", name: "Diciembre", style: "bg-a", gif: "https://i.postimg.cc/FKbjVkwc/200.gif", list: [] }
+            { id: "enero", name: "Enero", style: "bg-v", gif: "https://i.postimg.cc/FRmVMVjz/giphy.gif", rot: "-1.5deg", list: [] },
+            { id: "febrero", name: "Febrero", style: "bg-r", gif: "https://i.postimg.cc/kGYNtrL7/source.gif", rot: "1deg", list: [{ name: "Noelia", day: 19 }, { name: "Vanessa", day: 20 }] },
+            { id: "marzo", name: "Marzo", style: "bg-n", gif: "https://i.postimg.cc/WbK6NvMH/47284d9e1a5fb34fb81ef770a3c54ed3.gif", rot: "-1deg", list: [{ name: "Giannina", day: 15 }, { name: "Delia", day: 21 }] },
+            { id: "abril", name: "Abril", style: "bg-n", gif: "https://i.postimg.cc/FKbjVkwc/200.gif", rot: "1.5deg", list: [{ name: "Dina", day: 30 }] },
+            { id: "mayo", name: "Mayo", style: "bg-r", gif: "https://i.postimg.cc/kGYNtrL7/source.gif", rot: "-2deg", list: [] },
+            { id: "junio", name: "Junio", style: "bg-v", gif: "https://i.postimg.cc/FRmVMVjz/giphy.gif", rot: "1.2deg", list: [] },
+            { id: "julio", name: "Julio", style: "bg-r", gif: "https://i.postimg.cc/WbK6NvMH/47284d9e1a5fb34fb81ef770a3c54ed3.gif", rot: "-1deg", list: [] },
+            { id: "agosto", name: "Agosto", style: "bg-v", gif: "https://i.postimg.cc/FRmVMVjz/giphy.gif", rot: "2deg", list: [{ name: "Carlitos", day: 11 }, { name: "Jimena", day: 11 }] },
+            { id: "septiembre", name: "Septiembre", style: "bg-n", gif: "https://i.postimg.cc/WbK6NvMH/47284d9e1a5fb34fb81ef770a3c54ed3.gif", rot: "-1.5deg", list: [] },
+            { id: "octubre", name: "Octubre", style: "bg-r", gif: "https://i.postimg.cc/kGYNtrL7/source.gif", rot: "1deg", list: [] },
+            { id: "noviembre", name: "Noviembre", style: "bg-n", gif: "https://i.postimg.cc/FKbjVkwc/200.gif", rot: "-1.2deg", list: [] },
+            { id: "diciembre", name: "Diciembre", style: "bg-a", gif: "https://i.postimg.cc/FKbjVkwc/200.gif", rot: "1.8deg", list: [] }
         ];
 
-        // Cargar desde LocalStorage si ya existen datos modificados, sino usar la lista por defecto
-        let birthdayData = JSON.parse(localStorage.getItem('snoopy_birthdays')) || defaultData;
+        let birthdayData = JSON.parse(localStorage.getItem('snoopy_skeuo_birthdays')) || defaultData;
 
         const calendarGrid = document.getElementById('calendarGrid');
         const searchInput = document.getElementById('searchInput');
@@ -372,6 +413,7 @@
 
                 const card = document.createElement('section');
                 card.className = 'month-card';
+                card.style.setProperty('--rotation', month.rot);
 
                 const header = document.createElement('div');
                 header.className = `month-header ${month.style}`;
@@ -387,7 +429,7 @@
                     listToDisplay.forEach(person => {
                         const li = document.createElement('li');
                         li.className = 'birthday-item';
-                        li.textContent = `🎂 ${person.name} (${person.day})`;
+                        li.innerHTML = `<span class="name-label">🎂 ${person.name}</span><span class="day-label">Día ${person.day}</span>`;
                         ul.appendChild(li);
                     });
                 } else {
@@ -408,7 +450,6 @@
             });
         }
 
-        // Eventos del modal
         openModalBtn.addEventListener('click', () => modal.style.display = 'flex');
         closeModalBtn.addEventListener('click', () => modal.style.display = 'none');
 
@@ -418,15 +459,12 @@
             const monthId = document.getElementById('selectMonth').value;
             const day = parseInt(document.getElementById('inputDay').value);
 
-            // Buscar el mes y añadir el nuevo registro
             const targetMonth = birthdayData.find(m => m.id === monthId);
             if (targetMonth) {
                 targetMonth.list.push({ name, day });
-                // Ordenar la lista por días automáticamente
                 targetMonth.list.sort((a, b) => a.day - b.day);
                 
-                // Guardar en el dispositivo
-                localStorage.setItem('snoopy_birthdays', JSON.stringify(birthdayData));
+                localStorage.setItem('snoopy_skeuo_birthdays', JSON.stringify(birthdayData));
                 renderCalendar();
             }
 
