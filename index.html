@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CUMPLE DOC TEC</title>
+    <title>Snoopy Dashboard - Perfect A4</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Happy+Monkey&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Happy+Monkey&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -98,13 +98,31 @@
             gap: 6px;
         }
 
+        /* Título Alegre y Festivo Multicolor */
         h1 {
             font-family: 'Fredoka', sans-serif;
             font-size: 1.4rem;
-            color: var(--text-title);
+            font-weight: 700;
+            background: linear-gradient(45deg, #e91e63, #ff5722, #ffeb3b, #4caf50, #00bcd4, #9c27b0);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-transform: uppercase;
             margin: 0;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
+            filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.8));
+            animation: festivo 8s ease infinite;
+        }
+
+        @keyframes festivo {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+
+        .decoracion-emoji {
+            font-size: 1.3rem;
+            filter: drop-shadow(1px 1.5px 1px rgba(0,0,0,0.2));
         }
 
         .header-actions {
@@ -337,7 +355,7 @@
         .btn-delete { background: linear-gradient(135deg, #ef9a9a, #ef5350); display: none; width: 100%; margin-top: 5px;}
 
         /* ==========================================================================
-           🎯 SECCIÓN DE IMPRESIÓN Y EXPORTACIÓN ULTRA-HQ A4
+           🎯 EXPORTACIÓN A4 CORREGIDA, MÁS GRANDE Y CON TORTITA PERMANENTE
            ========================================================================== */
         @media print {
             @page {
@@ -352,11 +370,18 @@
                 image-rendering: high-quality !important;
             }
 
-            /* Ocultar elementos innecesarios */
             .header-actions,
             .search-wrapper,
             .modal {
                 display: none !important;
+            }
+
+            /* Forzar el ícono de tortita en la impresión e inhabilitar los lápices */
+            .birthday-item .edit-icon {
+                display: none !important;
+            }
+            .birthday-item .print-icon {
+                display: inline !important;
             }
 
             html, body {
@@ -394,20 +419,28 @@
                 gap: 15px !important;
             }
 
-            /* Forzamos que el GIF animado de la cabecera aparezca perfecto */
             .img-principal {
                 display: block !important;
                 height: 55px !important;
                 width: auto !important;
             }
 
+            /* Título Multicolor Alegre y Súper Llamativo en PDF */
             h1 {
-                font-size: 2.2rem !important; 
+                font-size: 2.3rem !important; 
+                background: linear-gradient(45deg, #e91e63, #ff5722, #ffeb3b, #4caf50, #00bcd4, #9c27b0) !important;
+                -webkit-background-clip: text !important;
+                -webkit-text-fill-color: transparent !important;
                 text-align: center !important;
                 margin: 0 !important;
+                filter: drop-shadow(1.5px 1.5px 0px rgba(0, 0, 0, 0.7)) !important;
             }
 
-            /* Cuadrícula optimizada con menos altura y con huecos generosos para evitar que choquen */
+            .decoracion-emoji {
+                font-size: 2.1rem !important;
+            }
+
+            /* Cuadrícula optimizada y con el espaciado exacto */
             main {
                 display: grid !important;
                 grid-template-columns: repeat(3, 1fr) !important;
@@ -420,9 +453,8 @@
                 box-sizing: border-box !important;
             }
 
-            /* 📐 REDUCCIÓN DE ALTURA DE LAS NOTAS */
             .month-card {
-                height: 165px !important; /* Altura controlada estricta para evitar superposiciones */
+                height: 165px !important; 
                 transform: rotate(calc(var(--rotation, 0deg))) !important; 
                 box-shadow: 4px 5px 10px rgba(0,0,0,0.3) !important;
                 padding: 8px !important;
@@ -434,9 +466,8 @@
                 flex-direction: column !important;
             }
 
-            /* 🔠 TÍTULOS Y TEXTOS CENTRADOS Y GRANDES */
             .month-header {
-                font-size: 1.1rem !important; 
+                font-size: 1.15rem !important; /* Más grande */
                 padding: 4px !important;
                 margin-bottom: 8px !important;
                 border: 1.5px solid rgba(0,0,0,0.2) !important;
@@ -445,37 +476,39 @@
 
             .birthday-list {
                 gap: 5px !important;
-                justify-content: center !important; /* Centrado vertical del grupo de cumpleaños */
-                align-items: center !important;     /* Centrado horizontal */
+                justify-content: center !important; 
+                align-items: center !important;     
             }
 
+            /* Textos mucho más grandes y visibles dentro de las notas */
             .birthday-item {
-                font-size: 0.95rem !important; 
+                font-size: 1.1rem !important; 
                 text-align: center !important;
                 align-items: center !important;
                 justify-content: center !important;
-                line-height: 1.2 !important;
+                line-height: 1.25 !important;
             }
 
             .birthday-item .day-label {
-                font-size: 0.78rem !important; 
-                color: #555 !important;
-                margin-top: 1px !important;
+                font-size: 0.88rem !important; 
+                color: #444 !important;
+                margin-top: 2px !important;
+                font-weight: bold !important;
             }
 
             .no-birthdays {
-                font-size: 0.95rem !important;
+                font-size: 1.1rem !important;
                 text-align: center !important;
                 margin: auto !important;
             }
 
-            /* Conserva todos los GIFs secundarios de forma nítida */
+            /* 🌟 SNOOPYS DE LAS NOTAS MÁS GRANDES Y HERMOSOS */
             .gif-mes {
-                width: 28px !important;
-                height: 28px !important;
-                bottom: 6px !important;
-                right: 6px !important;
-                opacity: 0.55 !important;
+                width: 38px !important; 
+                height: 38px !important;
+                bottom: 5px !important;
+                right: 5px !important;
+                opacity: 0.65 !important;
                 display: block !important;
             }
         }
@@ -485,10 +518,11 @@
 
     <header id="appHeader">
         <div class="header-top">
-            <!-- Conservamos y fijamos el GIF animado al lado del título -->
             <img class="img-principal" id="toggleDarkMode" src="https://i.postimg.cc/JhKshN9v/1c190cbf46871b36fdeaae3c2b1dfb27.gif" alt="Snoopy Cumpleaños">
             <div class="title-container">
-                <h1>🎈 Cumpleaños ✨</h1>
+                <span class="decoracion-emoji">🎈</span>
+                <h1>Cumpleaños</h1>
+                <span class="decoracion-emoji">✨</span>
             </div>
             <div class="header-actions">
                 <button class="btn-action btn-print" id="printBtn" title="Imprimir">🖨️</button>
@@ -630,11 +664,18 @@
                     listToDisplay.forEach((person, index) => {
                         const li = document.createElement('li');
                         li.className = 'birthday-item';
-                        const icon = isEditMode ? '✏️' : '🎂';
+                        
+                        // Sistema inteligente de cambio de íconos: 
+                        // Muestra lápiz si estamos editando en pantalla, pero SIEMPRE el pastelito al exportar
                         li.innerHTML = `
-                            <span class="name-label">${icon} ${person.name}</span>
+                            <span class="name-label">
+                                <span class="edit-icon" style="display: ${isEditMode ? 'inline' : 'none'};">✏️</span>
+                                <span class="print-icon" style="display: ${isEditMode ? 'none' : 'inline'};">🎂</span>
+                                ${person.name}
+                            </span>
                             <span class="day-label">Día ${person.day}</span>
                         `;
+                        
                         if (isEditMode) li.addEventListener('click', () => openEditModal(month.id, index));
                         ul.appendChild(li);
                     });
