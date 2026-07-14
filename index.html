@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Snoopy Dashboard - Réplica Exacta</title>
+    <title>Snoopy Dashboard - Réplica A4 Perfecta</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Happy+Monkey&display=swap" rel="stylesheet">
@@ -66,7 +66,7 @@
             border-bottom: 4px solid var(--border-real);
             height: 110px; 
             width: 100%;
-            max-width: 410px; /* Ancho de un celular típico */
+            max-width: 410px; /* Tamaño móvil para pantalla */
             box-sizing: border-box;
             gap: 5px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3), inset 0 -3px 0 rgba(0,0,0,0.1);
@@ -99,7 +99,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* 👁️ BOTONERA INTERACTIVA: Se oculta por defecto y aparece al pasar el dedo/mouse en la cabecera */
+        /* 👁️ Botonera que se autooculta si no se usa */
         .header-actions {
             position: absolute;
             right: 5px;
@@ -118,7 +118,6 @@
             z-index: 10;
         }
 
-        /* Revela la botonera cuando interactuamos con la cabecera */
         header:hover .header-actions,
         header:active .header-actions {
             opacity: 1;
@@ -177,10 +176,9 @@
             width: auto;
         }
 
-        /* 📱 CONTENEDOR CON DIMENSIONES DE PANTALLA CELULAR DE TU CAPTURA */
         main {
             width: 100%;
-            max-width: 410px; /* Forzamos ancho exacto del mockup de tu móvil */
+            max-width: 410px; /* Tamaño móvil para pantalla */
             height: calc(100% - 110px);
             display: grid;
             grid-template-columns: repeat(3, 1fr); 
@@ -190,11 +188,10 @@
             box-sizing: border-box;
         }
 
-        /* 📝 CADA NOTA CON LAS PROPORCIONES EXACTAS DE TU FOTO (SKEUOMÓRFICA) */
         .month-card {
             background: var(--bg-card);
             background-image: linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-            background-size: 100% 15px; /* Altura de la línea pautada */
+            background-size: 100% 15px; 
             border: 1px solid rgba(0,0,0,0.12);
             border-bottom: 4px solid rgba(0,0,0,0.22);
             border-radius: 4px;
@@ -205,7 +202,6 @@
             position: relative;
             overflow: hidden;
             transform: rotate(calc(var(--rotation, 0deg)));
-            /* Evitamos que colapsen o se deformen */
             aspect-ratio: 3 / 4; 
         }
 
@@ -262,7 +258,7 @@
             font-style: italic;
             color: #b8b8b8;
             font-size: 0.7rem;
-            margin: auto auto; /* Centrado absoluto dentro de la nota */
+            margin: auto auto; 
         }
 
         .gif-mes {
@@ -276,7 +272,6 @@
             opacity: 0.45; 
         }
 
-        /* Alfiler o chincheta roja superior */
         .month-card::before {
             content: '';
             position: absolute;
@@ -290,7 +285,7 @@
             z-index: 5;
         }
 
-        /* Modales */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -330,12 +325,12 @@
         .btn-delete { background: linear-gradient(135deg, #ef9a9a, #ef5350); display: none; width: 100%; margin-top: 5px;}
 
         /* ==========================================================================
-           🎯 IMPRESIÓN PROPORCIONAL IDÉNTICA (SIN REDIMENSIONAR NI MAXIMIZAR)
+           🎯 AJUSTE DE IMPRESIÓN DINÁMICA A4 (PROPORCIONAL Y COMPLETO)
            ========================================================================== */
         @media print {
             @page {
-                size: portrait;
-                margin: 5mm !important; 
+                size: A4 portrait;
+                margin: 10mm 8mm !important; /* Margen óptimo para evitar cortes */
             }
 
             * {
@@ -343,7 +338,7 @@
                 print-color-adjust: exact !important;
             }
 
-            /* Ocultamos cualquier control, incluidos los botones interactivos */
+            /* Escondemos menús, buscador y botones */
             .header-actions,
             .search-wrapper,
             .modal,
@@ -362,32 +357,67 @@
             }
 
             header {
-                height: 90px !important;
+                height: auto !important;
+                padding: 15px 0 !important;
                 width: 100% !important;
-                max-width: 380px !important; /* Mantenemos el formato del celular */
+                max-width: 100% !important; /* Liberamos el ancho del móvil */
                 box-shadow: none !important;
                 border-bottom: 4px solid var(--border-real) !important;
             }
 
+            h1 {
+                font-size: 2.2rem !important; /* Un poco más grande para el papel impreso */
+                text-align: center !important;
+                width: 100% !important;
+            }
+
+            /* 📐 El contenedor se estira libremente al ancho del papel A4 */
             main {
                 display: grid !important;
                 grid-template-columns: repeat(3, 1fr) !important;
                 grid-template-rows: repeat(4, 1fr) !important;
-                gap: 8px !important;
-                padding: 10px !important;
-                /* Bloqueamos el contenedor al tamaño calcado de la pantalla */
+                gap: 15px !important; /* Gaps mejor adaptados al papel físico */
+                padding: 20px 10px !important;
                 width: 100% !important;
-                max-width: 380px !important; 
-                height: calc(100% - 90px) !important;
+                max-width: 100% !important; /* ¡Adiós al límite de 380px! */
+                height: calc(100% - 100px) !important;
                 box-sizing: border-box !important;
             }
 
+            /* Mantienen su hermosa relación de aspecto, pero escaladas al tamaño del papel */
             .month-card {
-                aspect-ratio: 3 / 4 !important; /* Preserva la proporción vertical de post-it */
-                transform: rotate(calc(var(--rotation, 0deg))) !important; /* Respeta tus inclinaciones */
-                box-shadow: 2px 3px 5px rgba(0,0,0,0.2) !important;
+                aspect-ratio: 3 / 4 !important; 
+                transform: rotate(calc(var(--rotation, 0deg))) !important; 
+                box-shadow: 3px 5px 8px rgba(0,0,0,0.25) !important;
+                padding: 10px !important;
                 page-break-inside: avoid !important;
                 break-inside: avoid !important;
+            }
+
+            .month-header {
+                font-size: 1rem !important;
+                padding: 6px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .birthday-item {
+                font-size: 0.95rem !important;
+                line-height: 1.2 !important;
+            }
+
+            .birthday-item .day-label {
+                font-size: 0.8rem !important;
+            }
+
+            .no-birthdays {
+                font-size: 0.9rem !important;
+            }
+
+            .gif-mes {
+                width: 32px !important;
+                height: 32px !important;
+                bottom: 6px !important;
+                right: 6px !important;
             }
         }
     </style>
@@ -398,7 +428,6 @@
         <div class="header-top">
             <img class="img-principal" id="toggleDarkMode" src="https://i.postimg.cc/JhKshN9v/1c190cbf46871b36fdeaae3c2b1dfb27.gif" alt="Snoopy DarkMode">
             <h1>Cumpleaños</h1>
-            <!-- 👁️ Se revelará al tocar/pasar cursor en el header -->
             <div class="header-actions">
                 <button class="btn-action btn-print" id="printBtn" title="Imprimir">🖨️</button>
                 <button class="btn-action btn-edit-mode" id="toggleEditModeBtn" title="Modo Editar">✏️</button>
