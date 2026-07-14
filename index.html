@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Snoopy Dashboard - Una Sola Página PDF</title>
+    <title>Snoopy Dashboard - Réplica Exacta</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Happy+Monkey&display=swap" rel="stylesheet">
@@ -51,6 +51,7 @@
             background-position: 0 0, 4px 4px;
             display: flex;
             flex-direction: column;
+            align-items: center;
             box-sizing: border-box;
             transition: background-color 0.3s ease;
         }
@@ -64,9 +65,12 @@
             background: var(--bg-header);
             border-bottom: 4px solid var(--border-real);
             height: 110px; 
+            width: 100%;
+            max-width: 410px; /* Ancho de un celular típico */
             box-sizing: border-box;
             gap: 5px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3), inset 0 -3px 0 rgba(0,0,0,0.1);
+            position: relative;
         }
 
         .header-top {
@@ -84,7 +88,6 @@
             object-fit: contain;
             filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
             cursor: pointer;
-            transition: transform 0.2s;
         }
 
         h1 {
@@ -96,16 +99,31 @@
             letter-spacing: 0.5px;
         }
 
+        /* 👁️ BOTONERA INTERACTIVA: Se oculta por defecto y aparece al pasar el dedo/mouse en la cabecera */
         .header-actions {
             position: absolute;
             right: 5px;
             display: flex;
             gap: 4px;
             align-items: center;
-            background: rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.95);
             padding: 3px 6px;
             border-radius: 20px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--border-real);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-5px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            z-index: 10;
+        }
+
+        /* Revela la botonera cuando interactuamos con la cabecera */
+        header:hover .header-actions,
+        header:active .header-actions {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
         }
 
         .btn-action {
@@ -125,9 +143,7 @@
 
         .btn-print { background: linear-gradient(135deg, #4fc3f7, #0288d1); }
         .btn-edit-mode { background: linear-gradient(135deg, #90a4ae, #607d8b); }
-        .btn-edit-mode.active {
-            background: linear-gradient(135deg, #ffb74d, #f57c00);
-        }
+        .btn-edit-mode.active { background: linear-gradient(135deg, #ffb74d, #f57c00); }
         .btn-add { background: linear-gradient(135deg, #81c784, #388e3c); font-size: 1.1rem; }
 
         .search-wrapper {
@@ -161,40 +177,46 @@
             width: auto;
         }
 
+        /* 📱 CONTENEDOR CON DIMENSIONES DE PANTALLA CELULAR DE TU CAPTURA */
         main {
-            flex-grow: 1;
+            width: 100%;
+            max-width: 410px; /* Forzamos ancho exacto del mockup de tu móvil */
+            height: calc(100% - 110px);
             display: grid;
             grid-template-columns: repeat(3, 1fr); 
             grid-template-rows: repeat(4, 1fr);    
             gap: 10px;
-            padding: 10px;
+            padding: 12px;
             box-sizing: border-box;
-            height: calc(100% - 110px);
         }
 
+        /* 📝 CADA NOTA CON LAS PROPORCIONES EXACTAS DE TU FOTO (SKEUOMÓRFICA) */
         .month-card {
             background: var(--bg-card);
-            background-image: linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px);
-            background-size: 100% 16px;
-            border: 1px solid rgba(0,0,0,0.15);
-            border-bottom: 3px solid rgba(0,0,0,0.25);
+            background-image: linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+            background-size: 100% 15px; /* Altura de la línea pautada */
+            border: 1px solid rgba(0,0,0,0.12);
+            border-bottom: 4px solid rgba(0,0,0,0.22);
             border-radius: 4px;
-            box-shadow: 2px 4px 6px rgba(0,0,0,0.3);
-            padding: 5px;
+            box-shadow: 2px 4px 6px rgba(0,0,0,0.25);
+            padding: 6px;
             display: flex;
             flex-direction: column;
             position: relative;
             overflow: hidden;
             transform: rotate(calc(var(--rotation, 0deg)));
+            /* Evitamos que colapsen o se deformen */
+            aspect-ratio: 3 / 4; 
         }
 
         .month-header {
-            padding: 3px;
+            padding: 4px;
             text-align: center;
-            font-weight: 600;
-            font-size: 0.72rem;
-            border: 1px solid rgba(0,0,0,0.15);
-            margin-bottom: 4px;
+            font-weight: bold;
+            font-size: 0.75rem;
+            border: 1px solid rgba(0,0,0,0.12);
+            border-radius: 3px;
+            margin-bottom: 6px;
             font-family: 'Fredoka', sans-serif;
             text-transform: uppercase;
         }
@@ -210,14 +232,11 @@
 
         .birthday-list {
             list-style: none;
-            overflow-y: auto; 
+            overflow: hidden; 
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; 
-            align-items: center;    
             gap: 4px;
-            z-index: 2;
             padding: 0;
             margin: 0;
         }
@@ -236,28 +255,28 @@
 
         .birthday-item .day-label {
             font-size: 0.62rem;
-            color: #888;
+            color: #777;
         }
 
         .no-birthdays {
             font-style: italic;
-            color: #b0b0b0;
-            font-size: 0.65rem;
-            margin-top: auto;
-            margin-bottom: auto;
+            color: #b8b8b8;
+            font-size: 0.7rem;
+            margin: auto auto; /* Centrado absoluto dentro de la nota */
         }
 
         .gif-mes {
             position: absolute;
-            bottom: 3px;
-            right: 3px;
-            width: 28px; 
-            height: 28px; 
+            bottom: 4px;
+            right: 4px;
+            width: 24px; 
+            height: 24px; 
             object-fit: contain;
             z-index: 1;
-            opacity: 0.4; 
+            opacity: 0.45; 
         }
 
+        /* Alfiler o chincheta roja superior */
         .month-card::before {
             content: '';
             position: absolute;
@@ -271,14 +290,14 @@
             z-index: 5;
         }
 
-        /* Modal */
+        /* Modales */
         .modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(0,0,0,0.6);
             backdrop-filter: blur(2px);
-            z-index: 10;
+            z-index: 100;
             justify-content: center;
             align-items: center;
         }
@@ -311,99 +330,77 @@
         .btn-delete { background: linear-gradient(135deg, #ef9a9a, #ef5350); display: none; width: 100%; margin-top: 5px;}
 
         /* ==========================================================================
-           🎯 CONTROL ESTRICTO DE UNA SOLA HOJA DE IMPRESIÓN (FORZADO 1 PÁGINA)
+           🎯 IMPRESIÓN PROPORCIONAL IDÉNTICA (SIN REDIMENSIONAR NI MAXIMIZAR)
            ========================================================================== */
         @media print {
             @page {
                 size: portrait;
-                margin: 4mm !important; /* Margen mínimo absoluto para aprovechar la hoja */
+                margin: 5mm !important; 
             }
 
-            html, body {
-                overflow: hidden !important;
-                height: 100vh !important;
-                width: 100vw !important;
-                background-color: var(--bg-corcho) !important;
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
 
-            /* Esconder elementos de control */
-            .search-wrapper,
+            /* Ocultamos cualquier control, incluidos los botones interactivos */
             .header-actions,
+            .search-wrapper,
             .modal,
             #toggleDarkMode {
                 display: none !important;
             }
 
+            html, body {
+                overflow: hidden !important;
+                background-color: var(--bg-corcho) !important;
+                height: 100% !important;
+                width: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+            }
+
             header {
-                height: 8vh !important; /* Altura controlada basada en ventana gráfica */
-                padding: 5px !important;
+                height: 90px !important;
+                width: 100% !important;
+                max-width: 380px !important; /* Mantenemos el formato del celular */
                 box-shadow: none !important;
-                border-bottom: 3px solid var(--border-real) !important;
+                border-bottom: 4px solid var(--border-real) !important;
             }
 
-            h1 {
-                font-size: 1.6rem !important;
-                text-align: center !important;
-                margin: 0 !important;
-            }
-
-            /* Distribución fija en cuadricula 3x4 matemática que entra al 100% en una hoja */
             main {
                 display: grid !important;
                 grid-template-columns: repeat(3, 1fr) !important;
                 grid-template-rows: repeat(4, 1fr) !important;
-                gap: 6px !important;
-                padding: 6px !important;
-                height: 90vh !important; /* Ocupa el resto de la página sin desbordar */
+                gap: 8px !important;
+                padding: 10px !important;
+                /* Bloqueamos el contenedor al tamaño calcado de la pantalla */
+                width: 100% !important;
+                max-width: 380px !important; 
+                height: calc(100% - 90px) !important;
                 box-sizing: border-box !important;
-                page-break-inside: avoid !important;
             }
 
             .month-card {
-                height: 100% !important;
-                box-sizing: border-box !important;
+                aspect-ratio: 3 / 4 !important; /* Preserva la proporción vertical de post-it */
+                transform: rotate(calc(var(--rotation, 0deg))) !important; /* Respeta tus inclinaciones */
+                box-shadow: 2px 3px 5px rgba(0,0,0,0.2) !important;
                 page-break-inside: avoid !important;
                 break-inside: avoid !important;
-                padding: 4px !important;
-                transform: none !important; /* Quitamos rotación para maximizar espacio */
-            }
-
-            .month-header {
-                font-size: 0.75rem !important;
-                padding: 2px !important;
-                margin-bottom: 2px !important;
-            }
-
-            .birthday-list {
-                overflow: hidden !important; /* No permite scrollbars en impresión */
-                gap: 2px !important;
-            }
-
-            .birthday-item {
-                font-size: 0.7rem !important;
-                line-height: 1 !important;
-            }
-
-            .birthday-item .day-label {
-                font-size: 0.58rem !important;
-            }
-
-            .gif-mes {
-                width: 22px !important;
-                height: 22px !important;
-                opacity: 0.25 !important; /* Más sutil en papel */
             }
         }
     </style>
 </head>
 <body>
 
-    <header>
+    <header id="appHeader">
         <div class="header-top">
             <img class="img-principal" id="toggleDarkMode" src="https://i.postimg.cc/JhKshN9v/1c190cbf46871b36fdeaae3c2b1dfb27.gif" alt="Snoopy DarkMode">
             <h1>Cumpleaños</h1>
+            <!-- 👁️ Se revelará al tocar/pasar cursor en el header -->
             <div class="header-actions">
-                <button class="btn-action btn-print" id="printBtn" title="Imprimir una sola página">🖨️</button>
+                <button class="btn-action btn-print" id="printBtn" title="Imprimir">🖨️</button>
                 <button class="btn-action btn-edit-mode" id="toggleEditModeBtn" title="Modo Editar">✏️</button>
                 <button class="btn-action btn-add" id="openModalBtn" title="Agregar">+</button>
             </div>
