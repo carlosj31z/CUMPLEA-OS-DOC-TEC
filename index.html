@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Snoopy Dashboard - Alta Calidad A4</title>
+    <title>CUMPLE DOC TEC</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Happy+Monkey&display=swap" rel="stylesheet">
@@ -79,22 +79,28 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 12px;
             position: relative;
             width: 100%;
         }
 
         .img-principal {
-            height: 38px;
+            height: 42px;
             width: auto;
             object-fit: contain;
             filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
             cursor: pointer;
         }
 
+        .title-container {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
         h1 {
             font-family: 'Fredoka', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--text-title);
             text-transform: uppercase;
             margin: 0;
@@ -192,7 +198,7 @@
         .month-card {
             background: var(--bg-card);
             background-image: linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-            background-size: 100% 15px; 
+            background-size: 100% 16px; 
             border: 1px solid rgba(0,0,0,0.12);
             border-bottom: 4px solid rgba(0,0,0,0.22);
             border-radius: 4px;
@@ -203,7 +209,6 @@
             position: relative;
             overflow: hidden;
             transform: rotate(calc(var(--rotation, 0deg)));
-            aspect-ratio: 3 / 4; 
         }
 
         .month-header {
@@ -233,26 +238,30 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            justify-content: flex-start;
+            align-items: center; 
+            gap: 6px;
             padding: 0;
             margin: 0;
+            width: 100%;
         }
 
         .birthday-item {
-            font-size: 0.72rem; 
+            font-size: 0.75rem; 
             font-weight: bold;
             color: var(--text-main);
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            align-items: center; 
+            text-align: center; 
             width: 100%;
-            line-height: 1.1;
+            line-height: 1.2;
         }
 
         .birthday-item .day-label {
-            font-size: 0.62rem;
-            color: #777;
+            font-size: 0.65rem;
+            color: #666;
+            font-weight: normal;
         }
 
         .no-birthdays {
@@ -260,6 +269,8 @@
             color: #b8b8b8;
             font-size: 0.7rem;
             margin: auto auto; 
+            text-align: center;
+            width: 100%;
         }
 
         .gif-mes {
@@ -326,32 +337,30 @@
         .btn-delete { background: linear-gradient(135deg, #ef9a9a, #ef5350); display: none; width: 100%; margin-top: 5px;}
 
         /* ==========================================================================
-           🎯 IMPRESIÓN SÚPER ALTA RESOLUCIÓN Y PROPORCIONES OPTIMIZADAS
+           🎯 SECCIÓN DE IMPRESIÓN Y EXPORTACIÓN ULTRA-HQ A4
            ========================================================================== */
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 6mm 6mm !important; 
+                margin: 8mm 6mm !important; 
             }
 
             * {
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
-                /* Evitamos que el motor de impresión comprima o baje calidad a las texturas e imágenes */
                 image-rendering: -webkit-optimize-contrast !important;
                 image-rendering: high-quality !important;
             }
 
+            /* Ocultar elementos innecesarios */
             .header-actions,
             .search-wrapper,
-            .modal,
-            #toggleDarkMode {
+            .modal {
                 display: none !important;
             }
 
             html, body {
                 overflow: hidden !important;
-                /* Textura del corcho renderizada con precisión matemática para evitar pixelados */
                 background-color: var(--bg-corcho) !important;
                 background-image: 
                     radial-gradient(rgba(0,0,0,0.18) 15%, transparent 16%),
@@ -367,77 +376,105 @@
 
             header {
                 height: auto !important;
-                padding: 10px 0 !important;
+                padding: 12px 0 !important;
                 width: 100% !important;
-                max-width: 92% !important; 
+                max-width: 95% !important; 
                 box-shadow: none !important;
+                background: var(--bg-header) !important;
                 border-bottom: 4px solid var(--border-real) !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+
+            .header-top {
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                gap: 15px !important;
+            }
+
+            /* Forzamos que el GIF animado de la cabecera aparezca perfecto */
+            .img-principal {
+                display: block !important;
+                height: 55px !important;
+                width: auto !important;
             }
 
             h1 {
-                font-size: 2.3rem !important; 
+                font-size: 2.2rem !important; 
                 text-align: center !important;
-                width: 100% !important;
+                margin: 0 !important;
             }
 
-            /* Cuadrícula optimizada con márgenes equilibrados */
+            /* Cuadrícula optimizada con menos altura y con huecos generosos para evitar que choquen */
             main {
                 display: grid !important;
                 grid-template-columns: repeat(3, 1fr) !important;
                 grid-template-rows: repeat(4, 1fr) !important;
-                gap: 16px 14px !important; 
-                padding: 15px !important;
+                gap: 18px 12px !important; 
+                padding: 15px 12px !important;
                 width: 100% !important;
-                max-width: 94% !important; 
-                height: calc(100% - 100px) !important;
+                max-width: 95% !important; 
+                height: calc(100% - 110px) !important;
                 box-sizing: border-box !important;
             }
 
-            /* 📐 REDUCCIÓN DE TAMAÑO DE NOTAS: Ajustamos aspect-ratio de 3/4 a 1/1.25 para que sean más compactas */
+            /* 📐 REDUCCIÓN DE ALTURA DE LAS NOTAS */
             .month-card {
-                aspect-ratio: 1 / 1.25 !important; 
+                height: 165px !important; /* Altura controlada estricta para evitar superposiciones */
                 transform: rotate(calc(var(--rotation, 0deg))) !important; 
                 box-shadow: 4px 5px 10px rgba(0,0,0,0.3) !important;
-                padding: 12px 10px !important;
+                padding: 8px !important;
                 border: 1.5px solid rgba(0,0,0,0.18) !important;
                 border-bottom: 5px solid rgba(0,0,0,0.3) !important;
                 page-break-inside: avoid !important;
                 break-inside: avoid !important;
+                display: flex !important;
+                flex-direction: column !important;
             }
 
-            /* 🔠 LETRAS MÁS GRANDES Y LEGIBLES EN IMPRESIÓN */
+            /* 🔠 TÍTULOS Y TEXTOS CENTRADOS Y GRANDES */
             .month-header {
-                font-size: 1.15rem !important; 
+                font-size: 1.1rem !important; 
                 padding: 4px !important;
                 margin-bottom: 8px !important;
                 border: 1.5px solid rgba(0,0,0,0.2) !important;
+                text-align: center !important;
             }
 
             .birthday-list {
-                gap: 6px !important;
+                gap: 5px !important;
+                justify-content: center !important; /* Centrado vertical del grupo de cumpleaños */
+                align-items: center !important;     /* Centrado horizontal */
             }
 
             .birthday-item {
-                font-size: 1.1rem !important; /* Incrementado para perfecta lectura */
-                line-height: 1.15 !important;
+                font-size: 0.95rem !important; 
+                text-align: center !important;
+                align-items: center !important;
+                justify-content: center !important;
+                line-height: 1.2 !important;
             }
 
             .birthday-item .day-label {
-                font-size: 0.9rem !important; /* Incrementado para perfecta lectura */
+                font-size: 0.78rem !important; 
                 color: #555 !important;
                 margin-top: 1px !important;
             }
 
             .no-birthdays {
-                font-size: 1.05rem !important;
+                font-size: 0.95rem !important;
+                text-align: center !important;
+                margin: auto !important;
             }
 
-            /* Conserva todos los GIFs/Imágenes de forma nítida en alta calidad */
+            /* Conserva todos los GIFs secundarios de forma nítida */
             .gif-mes {
-                width: 32px !important;
-                height: 32px !important;
-                bottom: 8px !important;
-                right: 8px !important;
+                width: 28px !important;
+                height: 28px !important;
+                bottom: 6px !important;
+                right: 6px !important;
                 opacity: 0.55 !important;
                 display: block !important;
             }
@@ -448,8 +485,11 @@
 
     <header id="appHeader">
         <div class="header-top">
-            <img class="img-principal" id="toggleDarkMode" src="https://i.postimg.cc/JhKshN9v/1c190cbf46871b36fdeaae3c2b1dfb27.gif" alt="Snoopy DarkMode">
-            <h1>Cumpleaños</h1>
+            <!-- Conservamos y fijamos el GIF animado al lado del título -->
+            <img class="img-principal" id="toggleDarkMode" src="https://i.postimg.cc/JhKshN9v/1c190cbf46871b36fdeaae3c2b1dfb27.gif" alt="Snoopy Cumpleaños">
+            <div class="title-container">
+                <h1>🎈 Cumpleaños ✨</h1>
+            </div>
             <div class="header-actions">
                 <button class="btn-action btn-print" id="printBtn" title="Imprimir">🖨️</button>
                 <button class="btn-action btn-edit-mode" id="toggleEditModeBtn" title="Modo Editar">✏️</button>
